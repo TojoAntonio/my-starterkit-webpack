@@ -10,7 +10,8 @@ module.exports = {
   },
   output: {
     path: root + '/dist/js',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/dist/'
   },
   devtool: "source-map",
   module: {
@@ -39,18 +40,29 @@ module.exports = {
             },
           ]
         })
+      },
+      {
+        test: /\.(png|jpg|gif|svg|woff2?|eot|ttf)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+              name: '[name]-[hash:7].[ext]'
+            }
+          }
+        ]
       }
     ]
   },
   plugins: [
     extractSCSS,
-    //if you want to pass in options, you can do so:
-    //extractSCSS({
-    //  filename: 'style.css'
-    //})
     new webpack.optimize.UglifyJsPlugin({
       comments: false,
       sourceMap: true
+    }),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true
     })
   ]
 }
