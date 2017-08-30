@@ -1,3 +1,3 @@
-require('../css/hello.css');
+require('../scss/hello.scss');
 
 export default 'Salut Tojo'
