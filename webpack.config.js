@@ -3,10 +3,10 @@ const root = path.resolve(__dirname);
 
 module.exports = {
   entry: {
-    app: ['./src/main.js']
+    app: ['./src/js/main.js']
   },
   output: {
-    path: path.resolve(__dirname, '/dist'),
+    path: root + '/dist',
     filename: 'bundle.js'
   },
   module: {
@@ -18,6 +18,10 @@ module.exports = {
           loader: 'babel-loader',
         },
         include: root
+      },
+      {
+        test: /\.css$/,
+        use: [ 'style-loader', 'css-loader' ]
       }
     ]
   }
