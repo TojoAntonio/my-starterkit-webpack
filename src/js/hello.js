@@ -1,3 +1,5 @@
-require('../scss/hello.scss');
-require('../scss/main.scss');
-export default 'Salut Tojo'
+require('../scss/hello.scss')
+
+export default function print() {
+    console.log('Salut Tojo ff');
+}

@@ -1,19 +1,26 @@
 const path = require('path');
 const root = path.resolve(__dirname);
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const extractSCSS = new ExtractTextPlugin('../styles/style.css');
+/*const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const extractSCSS = new ExtractTextPlugin('../styles/style.css');*/
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
   entry: {
     app: ['./src/scss/main.scss', './src/js/main.js']
+    //app: './src/js/main.js'
   },
   output: {
     path: root + '/dist/js',
     filename: 'bundle.js',
     publicPath: '/dist/'
   },
-  devtool: "source-map",
+  devtool: "inline-source-map",
+  devServer: {
+    contentBase: './',
+    hot: true,
+    inline: true
+  },
   module: {
     rules: [
       {
@@ -26,20 +33,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: extractSCSS.extract({
-          fallback: 'style-loader',
-          //resolve-url-loader may be chained before sass-loader if necessary
-          use: [
-            {
-              loader: "css-loader"
-            },
-            {
-              loader: "sass-loader", options: {
-                sourceMap: true
-              }
-            },
-          ]
-        })
+        use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.(png|jpg|gif|svg|woff2?|eot|ttf)$/,
@@ -56,13 +50,17 @@ module.exports = {
     ]
   },
   plugins: [
-    extractSCSS,
+    /*new HtmlWebpackPlugin({
+      title: 'Hot Module Replacement'
+    }),*/
+    new webpack.HotModuleReplacementPlugin()
+    /*extractSCSS,
     new webpack.optimize.UglifyJsPlugin({
       comments: false,
       sourceMap: true
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
-    })
+    })*/
   ]
 }
