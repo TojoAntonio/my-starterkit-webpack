@@ -11,15 +11,16 @@ module.exports = {
     //app: './src/js/main.js'
   },
   output: {
-    path: root + '/dist/js',
+    path: path.resolve(__dirname, 'dist/js'),
     filename: 'bundle.js',
-    publicPath: '/dist/'
+    publicPath: '/dist/js/'
   },
-  devtool: "inline-source-map",
+  devtool: "source-map",
   devServer: {
     contentBase: './',
     hot: true,
-    inline: true
+    inline: true,
+    port: 9005
   },
   module: {
     rules: [

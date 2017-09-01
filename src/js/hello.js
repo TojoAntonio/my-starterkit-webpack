@@ -1,5 +1,5 @@
 require('../scss/hello.scss')
 
 export default function print() {
-    console.log('Salut Tojo ff');
+    console.log('Hello tojo 2');
 }
