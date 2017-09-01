@@ -1,8 +1,5 @@
 const path = require('path');
-const root = path.resolve(__dirname);
-/*const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const extractSCSS = new ExtractTextPlugin('../styles/style.css');*/
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
+const root = path.resolve(__dirname, '../');
 const webpack = require('webpack');
 
 module.exports = {
@@ -11,7 +8,7 @@ module.exports = {
     //app: './src/js/main.js'
   },
   output: {
-    path: path.resolve(__dirname, 'dist/js'),
+    path: path.resolve(__dirname, '../dist/js'),
     filename: 'bundle.js',
     publicPath: '/dist/js/'
   },
@@ -25,16 +22,16 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
+      },
+      {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader',
         },
         include: root
-      },
-      {
-        test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.(png|jpg|gif|svg|woff2?|eot|ttf)$/,
