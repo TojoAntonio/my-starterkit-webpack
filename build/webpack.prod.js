@@ -1,10 +1,39 @@
-const config = require('./webpack.common.js')
 const webpack = require('webpack')
 const path = require('path');
-const ExtractTextPlugin = require ('extract-text-plugin')
+const ExtractTextWebpackPlugin = require ('extract-text-webpack-plugin')
 
-const cssOutput = path.resolve(__dirname, '../dist/css')
-const extractSASS = new ExtractTextPlugin(cssOutput)
+const cssOutputPath = '../css/styles.css'
+const extractSASS = new ExtractTextWebpackPlugin(cssOutputPath)
 
+const config = {
+  devtool: "source-map",
+  module: {
+    rules: [
+      {
+        test: /\.scss/,
+        use: ExtractTextWebpackPlugin.extract({
+          use: [
+            { 
+              loader: "css-loader" 
+            }, 
+            { 
+              loader: "sass-loader", options: { 
+                sourceMap: true 
+              } 
+            }, 
+          ],
+          fallback: "style-loader"
+        })
+      }
+    ]
+  },
+  plugins: [
+    extractSASS,
+    new webpack.optimize.UglifyJsPlugin({
+      comments: false,
+      sourceMap: true
+    })
+  ]
+};
 
-module.exports = config
+module.exports = config;

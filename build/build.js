@@ -1,13 +1,15 @@
 require('shelljs/global')
 const webpack = require('webpack')
 const ora = require('ora')
-const conf = require('./webpack.prod.js')
+const config = require('./webpack.config')
 const loader = ora('loading...')
 
 loader.start();
 rm('-rf', 'dist');
 
-webpack(conf, function(err,stats) {
+const configOpt = {env: process.env.NODE_ENV, test: "test"}
+
+webpack(config(configOpt), function(err,stats) {
   loader.stop();
   if (err) throw err
     process.stdout.write(stats.toString({

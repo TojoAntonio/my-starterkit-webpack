@@ -22,10 +22,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
-      },
-      {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
@@ -48,17 +44,6 @@ module.exports = {
     ]
   },
   plugins: [
-    /*new HtmlWebpackPlugin({
-      title: 'Hot Module Replacement'
-    }),*/
     new webpack.HotModuleReplacementPlugin()
-    /*extractSCSS,
-    new webpack.optimize.UglifyJsPlugin({
-      comments: false,
-      sourceMap: true
-    }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
-    })*/
   ]
 }
