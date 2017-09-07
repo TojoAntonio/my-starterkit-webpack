@@ -4,7 +4,7 @@
   "description": "My personal starter kit based on webpack",
   "main": "index.js",
   "scripts": {
-    "build:dev": "NODE_ENV=dev node build/build.js",
+    "dev": "NODE_ENV=dev node build/dev.js",
     "build:prod": "NODE_ENV=prod node build/build.js"
   },
   "repository": {

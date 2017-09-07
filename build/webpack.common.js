@@ -13,12 +13,12 @@ module.exports = {
     publicPath: '/dist/js/'
   },
   devtool: "inline-source-map",
-  devServer: {
-    contentBase: './',
-    hot: true,
-    inline: true,
-    port: 9005
-  },
+  // devServer: {
+  //   contentBase: './',
+  //   hot: true,
+  //   inline: true,
+  //   port: 9005
+  // },
   module: {
     rules: [
       {
@@ -42,8 +42,5 @@ module.exports = {
         ]
       }
     ]
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ]
+  }
 }

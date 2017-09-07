@@ -6,7 +6,8 @@ My personal starter kit based on webpack
 * Install "webpack-dev-server" globaly (sudo npm i webpack-dev-server -g)
 
 ## CMD
-* NODE_ENV=dev npm run build
+* npm run build:prod
+* nom run dev
 
 ## Note
 * Node JS version 6.11.2

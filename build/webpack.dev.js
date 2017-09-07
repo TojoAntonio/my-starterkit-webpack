@@ -1,3 +1,5 @@
+const webpack = require('webpack')
+
 const config = {
   module: {
     rules: [
@@ -6,7 +8,10 @@ const config = {
         use: ['style-loader', 'css-loader', 'sass-loader']
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ]
 }
 
 module.exports = config;

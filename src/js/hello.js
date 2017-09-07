@@ -1,4 +1,4 @@
 
 export default function print() {
-    console.log('Hello');
+    console.log('Hello Tojo!!!');
 }
